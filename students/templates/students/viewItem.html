@@ -1,10 +1,141 @@
-<html>
-<head><title></title></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS System</title>
+    <style>
+        /* Body Styling */
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/008/617/161/non_2x/abstract-gradient-pastel-blue-and-purple-background-neon-pastel-color-template-for-website-or-presentation-free-free-vector.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Container for Content */
+        .pos-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            border-radius: 12px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Title Styling */
+        .pos-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Input and Button Styling */
+        .pos-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .pos-button {
+            width: 100%;
+            padding: 14px;
+            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            background-color: #5b9bd5;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+            .pos-button:hover {
+                background-color: #4a8ac4;
+            }
+
+        /* Order Summary */
+        .order-summary {
+            margin-top: 30px;
+            text-align: left;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .order-summary h2 {
+                font-size: 1.4em;
+                color: #333;
+                margin-top: 0;
+            }
+
+            .order-summary p {
+                font-size: 1em;
+                color: #555;
+                margin: 8px 0;
+            }
+    </style>
+</head>
 
 <body>
 
-<h1> {{txt1}} </h1>
-<h1> {{txt2}} </h1>
+    <div class="pos-container">
+        <h1 class="pos-title">Point of Sale</h1>
+
+        <!-- Display Dynamic Text (for context, assume these are item names or details) -->
+        <p>{{ txt1 }}</p>
+        <p>{{ txt2 }}</p>
+
+        <!-- Input fields for item name and quantity -->
+        <input type="text" id="itemName" class="pos-input" placeholder="Enter item name">
+        <input type="number" id="quantity" class="pos-input" placeholder="Enter quantity">
+
+        <!-- Submit Button -->
+        <button class="pos-button" onclick="submitOrder()">Submit Order</button>
+
+        <!-- Order Summary Display -->
+        <div id="orderSummary" class="order-summary" style="display: none;">
+            <h2>Order Summary</h2>
+            <p id="displayItem"></p>
+            <p id="displayQuantity"></p>
+        </div>
+    </div>
+
+    <script>
+        function submitOrder() {
+            // Get the values of the inputs
+            const itemName = document.getElementById('itemName').value;
+            const quantity = document.getElementById('quantity').value;
+
+            // Check if fields are filled
+            if (!itemName || !quantity) {
+                alert("Please enter both the item name and quantity.");
+                return;
+            }
+
+            // Display order summary
+            document.getElementById('displayItem').innerText = `Item: ${itemName}`;
+            document.getElementById('displayQuantity').innerText = `Quantity: ${quantity}`;
+            document.getElementById('orderSummary').style.display = 'block';
+
+            // Clear input fields
+            document.getElementById('itemName').value = '';
+            document.getElementById('quantity').value = '';
+        }
+    </script>
 
 </body>
 </html>
